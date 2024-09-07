@@ -10,7 +10,13 @@ interface Link {
   url: string
 }[]
 
-export function ImportantLinks() {
+interface ImportantLinksProps {
+  openCreateLinkModal: () => void
+}
+
+export function ImportantLinks({
+  openCreateLinkModal
+}: ImportantLinksProps) {
   const { tripID } = useParams()
   const [links, setLinks] = useState<Link[]>([])
 
@@ -44,7 +50,11 @@ export function ImportantLinks() {
         }
       </div>
 
-      <Button colour="secondary" size="full">
+      <Button
+        onClick={openCreateLinkModal}
+        colour="secondary"
+        size="full"
+      >
         <Plus className="size-5" />
         Cadastrar novo link
       </Button>
